@@ -1,29 +1,279 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hans">
 <head>
-<title>Page Title</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MHF4U Final – Functions in the Real World</title>
+  <meta name="description" content="CCT final project webpage. Replace with your project description." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0b0f1a;--card:#121827;--muted:#94a3b8;--accent:#3b82f6;--accent-2:#22d3ee;--text:#e5e7eb;--ring:#93c5fd}
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial}
+    body{background:linear-gradient(180deg,#0b0f1a 0%,#0d1324 100%);color:var(--text)}
+    a{color:var(--accent)}
+    .container{max-width:1050px;margin:0 auto;padding:24px}
+    .nav{position:sticky;top:0;background:rgba(11,15,26,.7);backdrop-filter: blur(8px);z-index:1000;border-bottom:1px solid rgba(148,163,184,.15)}
+    .nav-inner{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:12px 24px}
+    .brand{display:flex;gap:10px;align-items:center;font-weight:800}
+    .brand .logo{width:28px;height:28px;border-radius:10px;background: conic-gradient(from 180deg at 50% 50%, var(--accent), var(--accent-2));box-shadow:0 0 24px rgba(34,211,238,.45)}
+    .nav-links a{padding:10px 12px;border-radius:10px;text-decoration:none;color:var(--text)}
+    .nav-links a:hover{background:rgba(148,163,184,.12)}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:1px solid rgba(147,197,253,.35);background:rgba(59,130,246,.08);color:#dbeafe;text-decoration:none}
+    .btn:hover{background:rgba(59,130,246,.14)}
+    .hero{padding:72px 24px 32px}
+    .hero h1{font-size:clamp(28px,4vw,44px);line-height:1.1;margin:0 0 12px}
+    .hero p{color:var(--muted);max-width:760px;margin:0 0 16px}
+    .pill{display:inline-flex;gap:8px;align-items:center;background:rgba(148,163,184,.12);border:1px solid rgba(148,163,184,.2);padding:6px 10px;border-radius:999px;font-size:12px;color:#cbd5e1}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+    .card{background:linear-gradient(180deg,rgba(18,24,39,.9),rgba(18,24,39,.7));border:1px solid rgba(148,163,184,.15);border-radius:18px;padding:18px}
+    .card h3{margin:0 0 8px}
+    section{scroll-margin-top:80px;margin:24px 0}
+    .section-title{font-size:clamp(22px,3vw,30px);margin:0 0 10px}
+    .muted{color:var(--muted)}
+    .kbd{font:12px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;background:#0b1220;border:1px solid rgba(148,163,184,.25);border-bottom-color:rgba(148,163,184,.45);padding:2px 6px;border-radius:6px}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+    .imgcard{border-radius:14px;overflow:hidden;border:1px solid rgba(148,163,184,.15);background:#0e1425}
+    .imgcard img{width:100%;height:180px;object-fit:cover;display:block}
+    .foot{border-top:1px dashed rgba(148,163,184,.25);padding:24px;color:#94a3b8;text-align:center}
+    .skip a{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip a:focus{left:12px;top:12px;width:auto;height:auto;background:#111827;color:#e5e7eb;padding:8px 10px;border-radius:8px;outline:2px solid var(--ring)}
+    .badge{display:inline-block;border:1px solid rgba(148,163,184,.3);border-radius:999px;padding:2px 8px;font-size:12px;color:#cbd5e1}
+    .ref-list{padding-left:16px}
+    .ref-list li{margin:8px 0}
+    .notice{border-left:3px solid var(--accent);padding:10px 12px;background:rgba(59,130,246,.08);border-radius:10px}
+    .lang-toggle{display:flex;gap:8px}
+    .hidden{display:none!important}
+    .form{display:grid;gap:10px;max-width:640px}
+    input, textarea{width:100%;background:#0b1220;border:1px solid rgba(148,163,184,.35);color:#e5e7eb;padding:10px;border-radius:10px}
+    input:focus,textarea:focus{outline:2px solid var(--ring)}
+    .small{font-size:12px}
+  </style>
 </head>
-<body style="background: linear-gradient(to bottom, lightblue, white);">
+<body>
+  <div class="skip"><a href="#main">Skip to content</a></div>
+  <nav class="nav" aria-label="Primary">
+    <div class="nav-inner">
+      <div class="brand" aria-label="Project brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>MHF4U · Functions in the Real World</span>
+      </div>
+      <div class="nav-links" role="menubar">
+        <a role="menuitem" href="#overview">Overview</a>
+        <a role="menuitem" href="#requirements">Requirements</a>
+        <a role="menuitem" href="#functions">9 Functions</a>
+        <a role="menuitem" href="#publishing">Publishing</a>
+        <a role="menuitem" href="#checklist">Checklist</a>
+        <a role="menuitem" href="#references">References</a>
+      </div>
+      <div class="lang-toggle" aria-label="Language switcher">
+        <button class="btn" id="btn-zh" aria-pressed="true">中文</button>
+        <button class="btn" id="btn-en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </nav>
 
-<h1>Ethan's Kingdom</h1>
-<p>This is an official webpage of Ethan's Kingdom Government.</p>
+  <main id="main" class="container" tabindex="-1">
+    <header class="hero">
+      <span class="pill" data-i18n-zh="MHF4U 期末项目：现实世界中的函数" data-i18n-en="MHF4U Final: Functions in the Real World">MHF4U 期末项目：现实世界中的函数</span>
+      <h1 data-i18n-zh="游乐设施建模与函数变换" data-i18n-en="Amusement Ride Modelling & Transformations">游乐设施建模与函数变换</h1>
+      <p data-i18n-zh="用摄影/视频与 Desmos，将九类函数的母函数做变换以匹配真实游乐设施的形状或运动，并以网页呈现。" data-i18n-en="Use photos/videos and Desmos to transform nine families of parent functions to match real amusement rides, and present as a website.">用摄影/视频与 Desmos，将九类函数的母函数做变换以匹配真实游乐设施的形状或运动，并以网页呈现。</p>
+      <div class="grid">
+        <div class="card">
+          <h3 data-i18n-zh="作业对齐" data-i18n-en="Rubric Alignment">作业对齐</h3>
+          <p class="muted" data-i18n-zh="这一页确保覆盖：目的、证据、分析、反思、伦理、参考文献。" data-i18n-en="Ensure you cover: purpose, evidence, analysis, reflection, ethics, references.">这一页确保覆盖：目的、证据、分析、反思、伦理、参考文献。</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n-zh="可访问性" data-i18n-en="Accessibility">可访问性</h3>
+          <p class="muted" data-i18n-zh="已添加语义标签、可聚焦跳转、配色对比和键盘可用性。" data-i18n-en="Semantic tags, skip link, contrast, and keyboard usability included.">已添加语义标签、可聚焦跳转、配色对比和键盘可用性。</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n-zh="如何提交" data-i18n-en="Submission Tips">如何提交</h3>
+          <p class="muted" data-i18n-zh="可直接交单文件，或部署到 GitHub Pages/Netlify，再提交链接。" data-i18n-en="Submit the single file, or deploy to GitHub Pages/Netlify and submit a link.">可直接交单文件，或部署到 GitHub Pages/Netlify，再提交链接。</p>
+        </div>
+      </div>
+    </header>
 
-<!-- List -->
-<h2>List</h2>
-<ul>
-  <li>First item</li>
-  <li>Second item</li>
-  <li>Third item</li>
-</ul>
+    <section id="overview">
+      <h2 class="section-title" data-i18n-zh="Overview – 项目简介" data-i18n-en="Overview – Project Overview">Overview – 项目简介</h2>
+      <div class="notice" data-i18n-zh="在此简述项目目标：应用函数变换建模真实游乐设施；使用 Desmos；制作数字网页展示。" data-i18n-en="State goals: apply function transformations to model real rides; use Desmos; build a digital webpage presentation.">在此简述项目目标：应用函数变换建模真实游乐设施；使用 Desmos；制作数字网页展示。</div>
+      <div class="grid">
+        <div class="card"><h3 data-i18n-zh="阶段" data-i18n-en="Phases">阶段</h3>
+          <ol class="muted">
+            <li data-i18n-zh="收集照片/视频（可含模拟）" data-i18n-en="Collect photos/videos (simulations allowed)">收集照片/视频（可含模拟）</li>
+            <li data-i18n-zh="用 Desmos 建模并限定有效定义域" data-i18n-en="Model with Desmos and bound the domain appropriately">用 Desmos 建模并限定有效定义域</li>
+            <li data-i18n-zh="制作网页呈现（可自写 HTML/CSS/JS 或用建站工具）" data-i18n-en="Build digital presentation (code or site builder)">制作网页呈现（可自写 HTML/CSS/JS 或用建站工具）</li>
+            <li data-i18n-zh="发布并分享链接" data-i18n-en="Publish and share link">发布并分享链接</li>
+          </ol>
+        </div>
+        <div class="card"><h3 data-i18n-zh="评分对齐" data-i18n-en="Rubric Alignment">评分对齐</h3>
+          <p class="muted" data-i18n-zh="知识：方程与图像正确，定义域/值域用规范记号。思维：解释行为与变换。沟通：结构清晰、无语病。展示：视觉清晰、技术运用得当。" data-i18n-en="Knowledge: correct equations/graphs, proper domain/range notation. Thinking: behaviour & transforms explained. Communication: clear, polished. Tech/Presentation: clean visuals & structure.">知识：方程与图像正确，定义域/值域用规范记号。思维：解释行为与变换。沟通：结构清晰、无语病。展示：视觉清晰、技术运用得当。</p>
+        </div>
+      </div>
+    </section>
 
-<!-- Hyperlink -->
-<h2>Graph Link</h2>
-<p>Visit <a href="https://www.desmos.com/calculator/kvbf1oe6n0?embed" width="500" height="500" style="border: 1px solid #ccc" frameborder=0></iframe>My graph</a></p>
+    <section id="requirements">
+      <h2 class="section-title" data-i18n-zh="Requirements – 必做元素" data-i18n-en="Requirements – Must‑Have Items">Requirements – 必做元素</h2>
+      <div class="card">
+        <ul class="muted">
+          <li data-i18n-zh="共 9 类函数，至少包含：1/x、1/x^2、多项式(>2 次且多项式项)、带渐近线的三角函数、正弦/余弦、指数、对数，及 2 个自选" data-i18n-en="9 function families including: 1/x, 1/x^2, polynomial (degree>2 with multiple terms), trigonometric with asymptote, sinusoidal, exponential, logarithmic, plus two of your choice">共 9 类函数，至少包含：1/x、1/x^2、多项式(>2 次且多项式项)、带渐近线的三角函数、正弦/余弦、指数、对数，及 2 个自选</li>
+          <li data-i18n-zh="每个函数需要：标题、游乐设施图片/视频、嵌入的 Desmos 图、变换后方程、两段文字（变换说明；定义域/值域）" data-i18n-en="For each: header, ride image/video, embedded Desmos graph, transformed equation, two paragraphs (transformations; domain & range)">每个函数需要：标题、游乐设施图片/视频、嵌入的 Desmos 图、变换后方程、两段文字（变换说明；定义域/值域）</li>
+          <li data-i18n-zh="文字解释需为本人撰写；可用 AI 做排版与编码，不可代写数学解释" data-i18n-en="Explanations must be student‑generated; AI allowed for formatting/coding, not for math explanations">文字解释需为本人撰写；可用 AI 做排版与编码，不可代写数学解释</li>
+        </ul>
+      </div>
+    </section>
 
-<!-- Image -->
-<h2>Image</h2>
-<img src="https://via.placeholder.com/150" alt="Sample Image">
+    <section id="functions">
+      <h2 class="section-title" data-i18n-zh="9 Functions – 模板区" data-i18n-en="9 Functions – Templates">9 Functions – 模板区</h2>
+      <p class="muted" data-i18n-zh="每个函数使用一张卡片。先把你的照片/视频与 Desmos 链接贴进来，再写两段文字。" data-i18n-en="Use one card per function. Add your photo/video and Desmos link, then write the two paragraphs.">每个函数使用一张卡片。先把你的照片/视频与 Desmos 链接贴进来，再写两段文字。</p>
 
+      <div class="grid" id="func-grid"></div>
+
+      <template id="func-template">
+        <article class="card">
+          <h3 class="func-title">[Function Title]</h3>
+          <div class="imgcard" style="margin-bottom:8px">
+            <img alt="Ride image placeholder" src="https://images.unsplash.com/photo-1508264165352-258a6c4dc3af?q=80&w=1600&auto=format&fit=crop" />
+          </div>
+          <div class="imgcard" style="height:260px;margin-bottom:8px;display:flex;align-items:center;justify-content:center">
+            <span class="small muted">Paste your Desmos embed &lt;iframe&gt; here</span>
+          </div>
+          <div class="notice small">Equation（用 LaTeX / MathJax 书写）: <span class="eq">y = f(x)</span></div>
+          <h4 class="small" style="margin-top:10px">Transformations 变换说明</h4>
+          <p class="muted trans-text">（用你自己的话描述：伸缩、反射、平移、周期/幅值/相位、渐近线等）</p>
+          <h4 class="small">Domain & Range 定义域与值域</h4>
+          <p class="muted dr-text">（限定与实际设施相符的区间；用区间或集合表示法）</p>
+        </article>
+      </template>
+
+      <div class="notice small">如何嵌入 Desmos：在 Desmos 分享中复制“Embed”代码，直接粘贴 &lt;iframe&gt; 到对应卡片的嵌入区即可。</div>
+    </section>
+
+    <section id="publishing">
+      <h2 class="section-title" data-i18n-zh="Publishing – 发布你的网页" data-i18n-en="Publishing – Get It Online">Publishing – 发布你的网页</h2>
+      <div class="grid">
+        <div class="card"><h3>GitHub Pages</h3><ol class="muted"><li>创建仓库，命名如 <span class="kbd">mhf4u-rides</span></li><li>将此 <span class="kbd">index.html</span> 上传到根目录</li><li>Settings → Pages → Deploy from branch</li></ol></div>
+        <div class="card"><h3>替代方案</h3><p class="muted">使用 Netlify / Vercel / Google Sites / Wix / WordPress，发布后把链接交给老师。</p></div>
+        <div class="card"><h3>可访问性小贴士</h3><ul class="muted"><li>为每张图片写 <span class="kbd">alt</span> 文本</li><li>保持颜色对比度</li><li>标题层级合理</li></ul></div>
+      </div>
+    </section>
+
+    <section id="checklist">
+      <h2 class="section-title" data-i18n-zh="Checklist – 学生自查" data-i18n-en="Checklist – Student Self‑check">Checklist – 学生自查</h2>
+      <ul class="muted">
+        <li>✅ 已包含 9 个函数类别。</li>
+        <li>✅ 每个函数均含：标题、照片/视频、Desmos 嵌入、变换后方程、两段文字。</li>
+        <li>✅ 定义域/值域用规范集合或区间记号。</li>
+        <li>✅ 解释为本人撰写（非 AI 代写）。</li>
+        <li>✅ 页面结构清晰、语言准确、视觉整洁。</li>
+        <li>✅ 网页已发布，并可通过链接访问。</li>
+      </ul>
+    </section>
+
+    <section id="references">
+      <h2 class="section-title" data-i18n-zh="6) References – 参考文献 (MLA/APA)" data-i18n-en="6) References – MLA/APA">6) References – 参考文献 (MLA/APA)</h2>
+      <p class="muted" data-i18n-zh="按老师要求选择格式；确保包含作者、年份、标题、来源与链接。" data-i18n-en="Use the format your teacher requires; include author, year, title, source, and link.">按老师要求选择格式；确保包含作者、年份、标题、来源与链接。</p>
+      <ol class="ref-list">
+        <li><span class="badge">MLA</span> Author Lastname, Firstname. <em>Title</em>. Publisher, Year. <a href="#">URL</a>.</li>
+        <li><span class="badge">MLA</span> Author Lastname, Firstname. <em>Title</em>. Journal, vol. x, no. y, Year, pp. z–k. <a href="#">URL</a>.</li>
+      </ol>
+    </section>
+
+    <section id="feedback">
+      <h2 class="section-title" data-i18n-zh="7) Feedback – 访客留言" data-i18n-en="7) Feedback – Visitor Feedback">7) Feedback – 访客留言</h2>
+      <form class="form" aria-label="Feedback form (static demo)">
+        <label>
+          <span data-i18n-zh="你的邮箱（可选）" data-i18n-en="Your email (optional)">你的邮箱（可选）</span>
+          <input type="email" placeholder="you@example.com" aria-label="email" />
+        </label>
+        <label>
+          <span data-i18n-zh="意见或建议" data-i18n-en="Comments or suggestions">意见或建议</span>
+          <textarea rows="4" placeholder="..." aria-label="comments"></textarea>
+        </label>
+        <button type="button" class="btn" onclick="alertThanks()" aria-label="Submit feedback">✅ <span data-i18n-zh="提交（演示）" data-i18n-en="Submit (demo)">提交（演示）</span></button>
+        <span class="small muted" data-i18n-zh="表单为静态演示；如需收集数据，我们可接入 Google Forms 或 Netlify Forms。" data-i18n-en="Static demo; to collect data, we can connect Google Forms or Netlify Forms.">表单为静态演示；如需收集数据，我们可接入 Google Forms 或 Netlify Forms。</span>
+      </form>
+    </section>
+
+    <footer class="foot">
+      <div>
+        <span class="small">© <span id="year"></span> <span data-i18n-zh="你的姓名（或小组名）" data-i18n-en="Your Name (or Team)">你的姓名（或小组名）</span>. </span>
+        <span class="small">· <span data-i18n-zh="最后更新" data-i18n-en="Last updated">最后更新</span>: <time id="updated"></time></span>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Basic helpers
+    const $ = (sel)=>document.querySelector(sel);
+    const $$ = (sel)=>[...document.querySelectorAll(sel)];
+
+    // Year & updated timestamp
+    const now = new Date();
+    $('#year').textContent = now.getFullYear();
+    $('#updated').textContent = now.toISOString().slice(0,10);
+
+    // Language toggle (CN/EN) – switches visible strings using data-i18n attributes
+    const btnZh = $('#btn-zh');
+    const btnEn = $('#btn-en');
+    let lang = 'zh';
+
+    function setLang(target){
+      lang = target;
+      const isZh = lang==='zh';
+      btnZh.setAttribute('aria-pressed', isZh);
+      btnEn.setAttribute('aria-pressed', !isZh);
+      $$('[data-i18n-zh]').forEach(el=>{
+        const zh = el.getAttribute('data-i18n-zh');
+        const en = el.getAttribute('data-i18n-en');
+        el.textContent = (lang==='zh') ? zh : (en || zh);
+      })
+    }
+    btnZh.addEventListener('click',()=>setLang('zh'));
+    btnEn.addEventListener('click',()=>setLang('en'));
+
+    // Demo feedback
+    function alertThanks(){
+      const msg = (lang==='zh')? '已收到（演示）。谢谢你的反馈！' : 'Received (demo). Thanks for your feedback!';
+      alert(msg);
+    }
+    window.alertThanks = alertThanks;
+
+    // Smooth anchor scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href').slice(1);
+        const target = document.getElementById(id);
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth'});
+        }
+      });
+    })
+  </script>
+  <script id="mathjax" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    // Build 9 function cards automatically with suggested titles
+    const titles = [
+      'Rational Function – 1/x',
+      'Rational Function – 1/x^2',
+      'Polynomial (degree > 2)',
+      'Trig with Asymptote (e.g., tan/sec/csc/cot)',
+      'Sinusoidal (sin/cos)',
+      'Exponential',
+      'Logarithmic',
+      'Choice Function A',
+      'Choice Function B'
+    ];
+    const grid = document.getElementById('func-grid');
+    const tpl = document.getElementById('func-template');
+    titles.forEach(t=>{
+      const node = tpl.content.cloneNode(true);
+      node.querySelector('.func-title').textContent = t;
+      grid.appendChild(node);
+    });
+  </script>
 </body>
 </html>
-
